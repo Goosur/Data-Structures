@@ -1,0 +1,22 @@
+Create an empty list
+Print the list
+Remove an item from the list
+Add an item to the list
+Check to see if an item is present in the list
+Add an item to the list
+Add an item to the list
+Add an item to the list
+Add an item to the list
+Add an item to the list
+Add an item to the list
+Print the list
+Remove an item from the start of the list
+Remove an item from the middle of the list
+Remove an item from the end of the list
+Check to see if the items were removed from the list
+Remove an item that doesn't exist in the list
+Check to see if removal of non existent item was handled properly
+Search for item that exists in list
+Check to see if search returns true
+Search for item that doesn't exist in list
+Check to see if search returns false

@@ -9,85 +9,133 @@ public class TimePartA{
 
     static long timeStack( int n, Stack st){
 
-	//This gets the start time in nanoseconds
-	long start = System.nanoTime();
-	
-	for(int i=0; i < n; i++){
-	    st.push(i);
-	}
-	
-	while( !st.isEmpty() ){
-	    st.pop();
-	}
+        //This gets the start time in nanoseconds
+        long start = System.nanoTime();
+        
+        for(int i=0; i < n; i++){
+            st.push(i);
+        }
+        
+        while( !st.isEmpty() ){
+            st.pop();
+        }
 
-	//This gets the end time in nanoseconds
-	long end = System.nanoTime();
+        //This gets the end time in nanoseconds
+        long end = System.nanoTime();
 
-	return end - start;
+        return end - start;
     }
 
     static long timeQueue( int n, Queue q){
-	    
-	//This gets the start time in nanoseconds
-	long start = System.nanoTime();
-	
-	for(int i=0; i < n; i++){
-	    q.enqueue(i);
-	}
+            
+        //This gets the start time in nanoseconds
+        long start = System.nanoTime();
+        
+        for(int i=0; i < n; i++){
+            q.enqueue(i);
+        }
 
-	while( ! q.isEmpty()){
-	    q.dequeue();
-	}
+        while( ! q.isEmpty()){
+            q.dequeue();
+        }
 
-	//This gets the end time in nanoseconds
-	long end = System.nanoTime();
+        //This gets the end time in nanoseconds
+        long end = System.nanoTime();
 
-	return end - start;
+        return end - start;
     }
     
     public static void main(String[] args) throws IOException{
-	Stack test_st;
-	long measurement;
-	int size;
-	BufferedWriter slowDataFile = new BufferedWriter( new FileWriter("slow_data.csv"));
-	
-	//------------------
-	size = 100000;
-	test_st = new Stack( new UnlimitedArraySlow() );
-	measurement = timeStack(size, test_st);
-	slowDataFile.write("" + size + ", " + measurement);
-	slowDataFile.newLine();
-	//-----------------
-	
-	size = 200000;
-	test_st = new Stack( new UnlimitedArraySlow() );
-	measurement = timeStack(size, test_st);
-	slowDataFile.write("" + size + ", " + measurement);
-	slowDataFile.newLine();
-	//-----------------
+        Stack test_st;
+        long measurement;
+        int size;
+        BufferedWriter slowDataFile = new BufferedWriter( new FileWriter("slow_data.csv"));
+        
+        //------------------
+        size = 100000;
+        test_st = new Stack( new UnlimitedArraySlow() );
+        measurement = timeStack(size, test_st);
+        slowDataFile.write("" + size + ", " + measurement);
+        slowDataFile.newLine();
+        //-----------------
+        
+        size = 200000;
+        test_st = new Stack( new UnlimitedArraySlow() );
+        measurement = timeStack(size, test_st);
+        slowDataFile.write("" + size + ", " + measurement);
+        slowDataFile.newLine();
+        //-----------------
+        size = 300000;
+        test_st = new Stack( new UnlimitedArraySlow() );
+        measurement = timeStack(size, test_st);
+        slowDataFile.write("" + size + ", " + measurement);
+        slowDataFile.newLine();
+        //-----------------
+        size = 400000;
+        test_st = new Stack( new UnlimitedArraySlow() );
+        measurement = timeStack(size, test_st);
+        slowDataFile.write("" + size + ", " + measurement);
+        slowDataFile.newLine();
+        //-----------------
+        size = 500000;
+        test_st = new Stack( new UnlimitedArraySlow() );
+        measurement = timeStack(size, test_st);
+        slowDataFile.write("" + size + ", " + measurement);
+        slowDataFile.newLine();
+        //-----------------
+        size = 600000;
+        test_st = new Stack( new UnlimitedArraySlow() );
+        measurement = timeStack(size, test_st);
+        slowDataFile.write("" + size + ", " + measurement);
+        slowDataFile.newLine();
+        //-----------------
 
-	slowDataFile.close();
+        slowDataFile.close();
 
 
-	
-	BufferedWriter fastDataFile = new BufferedWriter( new FileWriter("fast_data.csv"));
-	//------------------
-	size = 100000;
-	test_st = new Stack( new UnlimitedArrayFast() );
-	measurement = timeStack(size, test_st);
-	fastDataFile.write("" + size + ", " + measurement);
-	fastDataFile.newLine();
-	//-----------------
-	
-	size = 200000;
-	test_st = new Stack( new UnlimitedArrayFast() );
-	measurement = timeStack(size, test_st);
-	fastDataFile.write("" + size + ", " + measurement);
-	fastDataFile.newLine();
-	//-----------------
+        
+        BufferedWriter fastDataFile = new BufferedWriter( new FileWriter("fast_data.csv"));
+        //------------------
+        size = 100000;
+        test_st = new Stack( new UnlimitedArrayFast() );
+        measurement = timeStack(size, test_st);
+        fastDataFile.write("" + size + ", " + measurement);
+        fastDataFile.newLine();
+        //-----------------
+        
+        size = 200000;
+        test_st = new Stack( new UnlimitedArrayFast() );
+        measurement = timeStack(size, test_st);
+        fastDataFile.write("" + size + ", " + measurement);
+        fastDataFile.newLine();
+        //-----------------
+        size = 300000;
+        test_st = new Stack( new UnlimitedArrayFast() );
+        measurement = timeStack(size, test_st);
+        fastDataFile.write("" + size + ", " + measurement);
+        fastDataFile.newLine();
+        //-----------------
+        size = 400000;
+        test_st = new Stack( new UnlimitedArrayFast() );
+        measurement = timeStack(size, test_st);
+        fastDataFile.write("" + size + ", " + measurement);
+        fastDataFile.newLine();
+        //-----------------
+        size = 500000;
+        test_st = new Stack( new UnlimitedArrayFast() );
+        measurement = timeStack(size, test_st);
+        fastDataFile.write("" + size + ", " + measurement);
+        fastDataFile.newLine();
+        //-----------------
+        size = 600000;
+        test_st = new Stack( new UnlimitedArrayFast() );
+        measurement = timeStack(size, test_st);
+        fastDataFile.write("" + size + ", " + measurement);
+        fastDataFile.newLine();
+        //-----------------
 
-	fastDataFile.close();
-	
+        fastDataFile.close();
+    
     }
 }
-	    
+        

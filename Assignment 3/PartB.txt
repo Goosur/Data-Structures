@@ -1,0 +1,14 @@
+My worst case runtime is O(N). 
+
+My reverse function creates a new list and assigns a current node tracker.
+This is 2 steps.
+It goes through the linked list which is N steps.
+We have N + 2 steps so far.
+Inside the while loop we insert the current node into the new list.
+Inserting to the start of the linked list creates a counter which is 1 step.
+Tracks a current node which is 1 step and creates a new node which is another step.
+Since we are adding to start of list we have 1 step to set the new node's next node to current.
+Then 1 more step to set the new start of the list to the new node.
+Overall to insert it takes 5 steps. 
+This totals the reverse function to N * 5 + 2 steps.
+We end up with O(5N + 2) which can be treated as O(N) in big oh notation since adding constants and multiplying by constants can drop off.

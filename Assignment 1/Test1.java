@@ -59,4 +59,3 @@ public class Test1{
 	processLetters(my_list);
     }
 }
-	    
