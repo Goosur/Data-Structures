@@ -12,59 +12,59 @@ public class Timing{
 
        	Random rand = new Random();
 
-	//Build the list, but don't time this part
-	for(int i=0; i < n; i++){
-	    Integer data = new Integer(rand.nextInt());
-	    lst.insert(data);
-	}
+		//Build the list, but don't time this part
+		for(int i=0; i < n; i++){
+			Integer data = new Integer(rand.nextInt());
+			lst.insert(data);
+		}
+		
+		//This gets the start time in nanoseconds
+		long start = System.nanoTime();
+		
+		for(int i=0; i < n; i++){
+			Integer data = new Integer(rand.nextInt());
+			lst.search(data);
+		}
 
-	
-	//This gets the start time in nanoseconds
-	long start = System.nanoTime();
-	
-	for(int i=0; i < n; i++){
-	    Integer data = new Integer(rand.nextInt());
-	    lst.search(data);
-	}
+		//This gets the end time in nanoseconds
+		long end = System.nanoTime();
 
-	//This gets the end time in nanoseconds
-	long end = System.nanoTime();
-
-	return end - start;
+		return end - start;
     }
 
     static long timeInsert( int n, SearchList<Integer> lst){
-	Random rand = new Random();
+		Random rand = new Random();
 
-	
-	//This gets the start time in nanoseconds
-	long start = System.nanoTime();
-	
-	for(int i=0; i < n; i++){
-	    Integer data = new Integer(rand.nextInt());
-	    lst.insert(data);
-	}
+		
+		//This gets the start time in nanoseconds
+		long start = System.nanoTime();
+		
+		for(int i=0; i < n; i++){
+			Integer data = new Integer(rand.nextInt());
+			lst.insert(data);
+		}
 
-	//This gets the end time in nanoseconds
-	long end = System.nanoTime();
+		//This gets the end time in nanoseconds
+		long end = System.nanoTime();
 
-	return end - start;
+		return end - start;
     }
     
     public static void main(String[] args) throws IOException{
-	SearchList s_list;
-	long measurement;
-	int size;
-	BufferedWriter dataFile = new BufferedWriter( new FileWriter("data_file.csv"));
-	
-	//------------------
-	size = 100000;
-	s_list = new SkipList<Integer>( );
-	measurement = timeInsert(size, s_list);
-	dataFile.write("" + size + ", " + measurement);
-	dataFile.newLine();
+		SearchList s_list;
+		long measurement;
+		int size;
+		BufferedWriter dataFile = new BufferedWriter( new FileWriter("data_file.csv"));
 
-	dataFile.close();
+		for (int i = 1; i <= 10; i++) {
+			size = i*10000;
+			s_list = new OrderedLinked<Integer>( );
+			measurement = timeInsert(size, s_list);
+			dataFile.write("" + size + ", " + measurement);
+			dataFile.newLine();
+		}
+
+		dataFile.close();
 
 	
     }
