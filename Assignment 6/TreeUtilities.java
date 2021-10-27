@@ -17,11 +17,11 @@ public abstract class TreeUtilities {
 		}
     }
 
-    //This function prints all of the data an IntSearchTree in order
+    //This function prints all the data an IntSearchTree in order
     //Starting with the lowest and going to the highest
     public static void printTree(IntSearchTree tree) {
 		printTreeHelper(tree.getRoot());
-		System.out.println("");
+		System.out.println();
     }
 
     //This function creates a IntSearchTree filled with randomly chosen data
@@ -40,7 +40,11 @@ public abstract class TreeUtilities {
 		return tree;
     }
 
-	// TODO: Doc this bitch up
+	/**
+	 * Returns the largest integer stored in given tree.
+	 * @param the_tree (IntSearchTree) tree of interest
+	 * @return (int) the largest integer stored in the_tree
+	 */
 	public static int getMax(IntSearchTree the_tree) {
 
 		IntNode current = the_tree.getRoot();
@@ -51,9 +55,61 @@ public abstract class TreeUtilities {
 		return current.getData();
 	}
 
-	// TODO: fix
+	/**
+	 * Finds target node in tree.
+	 * @param nd (IntNode) starting node
+	 * @param target (int) node data to search for
+	 * @return (IntNode) target node
+	 */
+	private static IntNode findNode(IntNode nd, int target) {
+		// TODO: probably need to fix something here
+		if (nd.getData() == target) {
+			return nd;
+		}
+
+		if (target > nd.getData()) {
+
+			//Find larger values on the right
+			if (nd.getRight() != null) {
+				return findNode(nd.getRight(), target);
+			}
+		}
+
+		if (target < nd.getData()) {
+
+			//Find smaller values on the left
+			if (nd.getLeft() != null) {
+				return findNode(nd.getLeft(), target);
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Find the first node that stores the target integer and return the height of that node.
+	 * @param the_tree (IntSearchTree) tree to search and get height of
+	 * @param target (int) value to search for and find height of
+	 * @return (int) height of target in tree
+	 */
 	public static int getNodeHeight(IntSearchTree the_tree, int target) {
-		return 0;
+
+		// Find distance from target node to root
+		IntNode currentNode = findNode(the_tree.getRoot(), target);
+
+		if (currentNode == null) {
+			return -1;
+		}
+
+		int height = 1;
+
+		// Increment height until root reached.
+		while (currentNode.getParent() != null) {
+			height++;
+			currentNode = currentNode.getParent();
+		}
+
+		return height;
 	}
 
 	// TODO: fix
@@ -61,9 +117,21 @@ public abstract class TreeUtilities {
 		return 0;
 	}
 
-	// TODO: fix
+	/**
+	 * Find target in tree and get next int.
+	 * @param the_tree (IntSearchTree) tree of interest
+	 * @param target (int) node target value
+	 * @return (int) next int
+	 */
 	public static int getNextInt(IntSearchTree the_tree, int target) {
-		return 0;
+
+		IntNode targetNode = findNode(the_tree.getRoot(), target);
+
+		if (targetNode == null || targetNode.getRight() == null) {
+			throw new RuntimeException();
+		} else {
+			return targetNode.getRight().getData();
+		}
 	}
 
     //Don't hesitate to modify this code, it is only here for testing purposes
@@ -74,11 +142,17 @@ public abstract class TreeUtilities {
 
 		System.out.println("Is 5 in the tree?");
 		System.out.println(tree.search(5));
+		System.out.println(TreeUtilities.getNodeHeight(tree, 5));
+		System.out.println(TreeUtilities.getNextInt(tree, 5));
 
 		System.out.println("Is 7 in the tree?");
 		System.out.println(tree.search(7));
+		System.out.println(TreeUtilities.getNodeHeight(tree, 7));
+		System.out.println(TreeUtilities.getNextInt(tree, 7));
 
 		System.out.println("Is 18 in the tree?");
 		System.out.println(tree.search(18));
-    }
+		System.out.println(TreeUtilities.getNodeHeight(tree, 18));
+		System.out.println(TreeUtilities.getNextInt(tree, 18));
+	}
 }
