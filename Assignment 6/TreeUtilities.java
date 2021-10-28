@@ -62,7 +62,8 @@ public abstract class TreeUtilities {
 	 * @return (IntNode) target node
 	 */
 	private static IntNode findNode(IntNode nd, int target) {
-		// TODO: probably need to fix something here
+
+		// TODO: maybe need to fix something here
 		if (nd.getData() == target) {
 			return nd;
 		}
