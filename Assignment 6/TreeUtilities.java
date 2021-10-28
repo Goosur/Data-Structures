@@ -4,6 +4,7 @@
 //All functions in this class are static.
 //This class is never intended to be constructed.
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class TreeUtilities {
@@ -115,7 +116,37 @@ public abstract class TreeUtilities {
 
 	// TODO: fix
 	public static int getTreeHeight(IntSearchTree the_tree) {
-		return 0;
+
+		ArrayList<IntNode> leaves = new ArrayList<>();
+		ArrayList<IntNode> queue = new ArrayList<>();
+		queue.add(the_tree.getRoot());
+
+		while (queue.size() > 0) {
+
+			if (queue.get(0).getLeft() == null && queue.get(0).getRight() == null) {
+				leaves.add(queue.get(0));
+			}
+
+			if (queue.get(0).getLeft() != null) {
+				queue.add(queue.get(0).getLeft());
+			}
+
+			if (queue.get(0).getRight() != null) {
+				queue.add(queue.get(0).getRight());
+			}
+
+			queue.remove(0);
+
+		}
+
+		int maxHeight = 0;
+		for (IntNode leaf : leaves) {
+			if (getNodeHeight(the_tree, leaf.getData()) > maxHeight) {
+				maxHeight = getNodeHeight(the_tree, leaf.getData());
+			}
+		}
+
+		return maxHeight;
 	}
 
 	/**
@@ -138,22 +169,40 @@ public abstract class TreeUtilities {
     //Don't hesitate to modify this code, it is only here for testing purposes
     public static void main(String[] args) {
 
-		IntSearchTree tree = makeRandomTree(10, 20);
+//		IntSearchTree tree = makeRandomTree(10, 20);
+//		printTree(tree);
+//
+//		System.out.println("Is 5 in the tree?");
+//		System.out.println(tree.search(5));
+//		System.out.println(TreeUtilities.getNodeHeight(tree, 5));
+//		System.out.println(TreeUtilities.getNextInt(tree, 5));
+//
+//		System.out.println();
+//		System.out.println("Is 7 in the tree?");
+//		System.out.println(tree.search(7));
+//		System.out.println(TreeUtilities.getNodeHeight(tree, 7));
+//		System.out.println(TreeUtilities.getNextInt(tree, 7));
+//
+//		System.out.println();
+//		System.out.println("Is 18 in the tree?");
+//		System.out.println(tree.search(18));
+//		System.out.println(TreeUtilities.getNodeHeight(tree, 18));
+//		System.out.println(TreeUtilities.getNextInt(tree, 18));
+
+		IntSearchTree tree = new IntSearchTree();
+		tree.insert(5);
+		tree.insert(6);
+		tree.insert(1);
+		tree.insert(14);
+		tree.insert(3);
+		tree.insert(7);
+		tree.insert(10);
 		printTree(tree);
 
-		System.out.println("Is 5 in the tree?");
-		System.out.println(tree.search(5));
-		System.out.println(TreeUtilities.getNodeHeight(tree, 5));
-		System.out.println(TreeUtilities.getNextInt(tree, 5));
+		System.out.println();
+		System.out.println(getNextInt(tree, 14 ));
 
-		System.out.println("Is 7 in the tree?");
-		System.out.println(tree.search(7));
-		System.out.println(TreeUtilities.getNodeHeight(tree, 7));
-		System.out.println(TreeUtilities.getNextInt(tree, 7));
-
-		System.out.println("Is 18 in the tree?");
-		System.out.println(tree.search(18));
-		System.out.println(TreeUtilities.getNodeHeight(tree, 18));
-		System.out.println(TreeUtilities.getNextInt(tree, 18));
+		System.out.println();
+		System.out.println(TreeUtilities.getTreeHeight(tree));
 	}
 }
