@@ -7,6 +7,9 @@ public class IntNode {
     public IntNode parent;
     public int data;
 
+    public int height;
+    public int nNodes;
+
 	//Constructor
 	public IntNode(int the_data) {
 		data = the_data;
@@ -95,6 +98,14 @@ public class IntNode {
 
     public void setParent(IntNode nd) {
 		parent = nd;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int h) {
+        height = h;
     }
 
     public boolean isLeaf() {

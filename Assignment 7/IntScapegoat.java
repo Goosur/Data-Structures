@@ -8,8 +8,11 @@ public class IntScapegoat implements IntDataSet {
 
     @Override
     public void insert(int data) {
+        
         if (root == null) {
             root = new IntNode(data);
+            root.height = 1;
+            root.nNodes = 1;
         } else {
             root.insert(data);
         }

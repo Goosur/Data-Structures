@@ -5,6 +5,7 @@ In this assignment we look at the balancing of binary trees. In particular, you 
 
 Scapegoat trees are described in detail in chapter 8 of the textbook (https://opendatastructures.org/)
 
+
 **High Level:**
 
 I have provided you with a simple implementation of a binary search tree for integer (int) data. This is the same implementation from the previous assignment and you will make use of the Height functions that you created for that assignment. 
@@ -14,19 +15,6 @@ You will first explore the creation of very "unbalanced" binary search trees. Th
 You will then implement a Scapegoat tree which has a different insertion mechanism that ensures the tree stays roughly balanced as nodes are inserted. 
 
 Finally, you will obtain some timing data to see if your scapegoat tree is faster than the regular binary search tree. (You should find that if you are going to be doing a lot of searching in the tree, that the work that the scapegoat tree does to maintain a rough balance is well worth it.)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 **Detailed Instructions:**
@@ -40,7 +28,7 @@ You can find the code for in the course GitHub repository
 ( https://github.com/mlepinski/Data-Structures )
 
 
-**Part A:**
+**Part A:** COMPLETED
 
 Write a function that inserts 1000 integers into an IntSearchTree in order. (That is, you insert the smallest integer first and then the rest of the integers in increasing order.)
 
@@ -49,7 +37,7 @@ Use your work from Assignment 6 (getTreeHeight) to find the height of the result
 Create a textfile called readme.txt that tells me what heights you obtained. 
 
 
-**Part B:**
+**Part B:** COMPLETED
 
 Create a Java ArrayList that contains 1000 integers. Use the function Collections.shuffle() to randomly order this array list. 
 
@@ -87,6 +75,7 @@ Therefore, if the number of nodes falls below 1.5^Height then we are very far fr
 
 We then re-balance by collecting all of the nodes in the sub-tree. (All of the descendents of the Scapegoat) and re-arranging them to be well balanced. There are several ways  that you can do this, but probably the easiest is to collect them into an ArrayList, shuffle them, and then insert them. (As we saw in Part B this will on average give you a pretty good balanced tree). Alternatively, the textbook describes how you can build a perfectly balanced subtree. 
 
+
 **Part E:**
 
 Your IntScapegoat class implements IntDataSet as does the IntSearchTree.
@@ -97,6 +86,7 @@ Does the balancing lead to faster searches?
 Is there a significant difference in the time to create the tree? (Do all of the insertions?)
 
 Include a chart that shows your timing measurements (in a separate file) and briefly describe your conclusions in readme.txt.
+
 
 **Submission:**
 
