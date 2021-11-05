@@ -108,6 +108,14 @@ public class IntNode {
         height = h;
     }
 
+    public int getNNodes() {
+        return nNodes;
+    }
+
+    public void setNNodes(int n) {
+        nNodes = n;
+    } 
+
     public boolean isLeaf() {
 		return (left == null) && (right == null);
     }

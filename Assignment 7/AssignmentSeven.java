@@ -20,6 +20,10 @@ public class AssignmentSeven {
     
     }
 
+    public static int test() {
+       return 0; 
+    }
+
     /**
      * Fills a tree with values from an array.
      * @param a Array to fill tree with
