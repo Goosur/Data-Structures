@@ -1,4 +1,4 @@
-//This is a binary search tree that stores integers
+// This is a binary search tree that stores integers
 
 public class IntNode {
 
@@ -6,13 +6,14 @@ public class IntNode {
     public IntNode right;
     public IntNode parent;
     public int data;
-
     public int height;
     public int nNodes;
 
 	//Constructor
 	public IntNode(int the_data) {
-		data = the_data;
+		this.data = the_data;
+        this.height = 1;
+        this.nNodes = 1;
 	}
 
     public void insert(int new_data) {
@@ -100,23 +101,23 @@ public class IntNode {
 		parent = nd;
     }
 
+    public boolean isLeaf() {
+		return (left == null) && (right == null);
+    }
+
     public int getHeight() {
-        return height;
+        return this.height;
     }
 
     public void setHeight(int h) {
-        height = h;
+        this.height = h;
     }
 
     public int getNNodes() {
-        return nNodes;
+        return this.nNodes;
     }
 
     public void setNNodes(int n) {
-        nNodes = n;
-    } 
-
-    public boolean isLeaf() {
-		return (left == null) && (right == null);
+        this.nNodes = n;
     }
 }
