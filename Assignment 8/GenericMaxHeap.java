@@ -1,55 +1,81 @@
-//This class implements a heap (priority queue)
-// ... The heap can store any comparable object
-//For convenience we use an ArrayList
-// ... The ArrayList implementation handles the re-sizing of the array
-// ... which simplifies our code a bit
-
-//This is a MaxHeap which means that the largest value is stored in the root
-//... and the value at a node is Larger than the values of its children
-
 import java.util.ArrayList;
 
-public class GenericMaxHeap<T extends Comparable>{
+/**
+ * Implements a heap (priority queue)
+ * The heap can store any comparable object
+ *
+ * For convenience we use an {@link ArrayList}
+ * The {@link ArrayList} implementation handles the re-sizing of the array
+ * which simplifies our code a bit
+ *
+ * This is a MaxHeap which means that the largest value is stored in the root
+ * and the value at a node is larger than the values of its children
+ */
+public class GenericMaxHeap<T extends Comparable<T>>{
 
     ArrayList<T> data;
     int size;
 
-    //These functions take in an index (a location in the array)
-    //... and return the index (location) of the left/right child
+    /**
+     * Create an empty max heap
+     */
+    public GenericMaxHeap(){
+        size = 0;
+        data = new ArrayList<T>();
+    }
+
+    /**
+     * Takes in an index and returns the index of the left child
+     * @param index location in the array
+     * @return index of left child
+     */
     int left(int index) {
-        return 2*index + 1;
+        return (2 * index) + 1;
     }
+
+    /**
+     * Takes in an index and returns the index of the right child
+     * @param index location in the array
+     * @return index of right child
+     */
     int right(int index) {
-        return 2*index + 2;
+        return (2 * index) + 2;
     }
 
-    //This functions take in an index (a location in the array)
-    //... and return the index (location) of the parent
+    /**
+     * Takes in an index and returns the index of the parent
+     * @param index a location in the array
+     * @return index of the parent
+     */
     int parent(int index) {
-        return (index-1)/2;
+        return (index - 1) / 2;
     }
 
-    //This function takes 
-    public void insert(T new_data){
-    }
+    /**
+     * Inserts new data
+     * @param new_data
+     */
+    public void insert(T new_data) {
 
-    //This function returns the largest item in the heap
-    //This function does not change the heap
-    public T getMax(){
-	return this.data.get(0);
-    }
-
-    //This function removes the largest item from the heap
-    //This function then returns that item
-    public T removeMax(){
-
-	//Don't return null, change this line!
-	return null;
+        // TODO: Need to do this still
     }
     
-    public GenericMaxHeap(){
-	size = 0;
-	data = new ArrayList<T>();
+    /**
+     * Returns largest item in the heap
+     * @return item
+     */
+    public T getMax() {
+        return this.data.get(0);
     }
 
+    /**
+     * Removes the largest item from the heap
+     * @return removed item
+     */
+    public T removeMax() {
+
+        // TODO: Don't return null, change this line!
+        return null;
+    }
+    
 }
