@@ -21,4 +21,9 @@ public class Task implements Comparable<Task> {
 
     }
 
+    @Override
+    public String toString() {
+        return this.description + " " + this.priority;
+    }
+
 }

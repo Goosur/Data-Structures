@@ -21,7 +21,7 @@ public class GenericMaxHeap<T extends Comparable<T>>{
      */
     public GenericMaxHeap(){
         size = 0;
-        data = new ArrayList<T>();
+        data = new ArrayList<>();
     }
 
     /**
@@ -53,21 +53,26 @@ public class GenericMaxHeap<T extends Comparable<T>>{
 
     /**
      * Inserts new data
-     * @param new_data
+     * @param newData
      */
-    public void insert(T new_data) {
- 
-        data.add(new_data);
-       
-        int i = parent(data.indexOf(new_data));
-        int j = data.indexOf(new_data);
+    public void insert(T newData) {
 
-        while (data.get(i).compareTo(new_data) < 0 && i >= 0) {
-            data.set(j, data.get(i));
-            data.set(i, new_data);
+        // Check if initial data array is empty
+        boolean empty = this.data.isEmpty();
+        data.add(newData);
+        
+        if (!empty) {
+        
+            int i = parent(data.indexOf(newData));
+            int j = data.indexOf(newData);
 
-            i = parent(data.indexOf(new_data));
-            j = data.indexOf(new_data);
+            while (data.get(i).compareTo(newData) < 0 && i >= 0) {
+                data.set(j, data.get(i));
+                data.set(i, newData);
+
+                i = parent(data.indexOf(newData));
+                j = data.indexOf(newData);
+            }
         }
 
     }
@@ -86,18 +91,38 @@ public class GenericMaxHeap<T extends Comparable<T>>{
      */
     public T removeMax() {
 
-        // TODO: Keep working on this. Almost finished.
-        T max = data.get(0);
+        // TODO: Unbelievable close...
+        T max;
         
-        T temp = data.get(data.size() - 1);
-        int i = parent(data.indexOf(temp));
-        int j = data.indexOf(temp);
+        if (this.data.isEmpty()) {
 
-        while (i >= 0) {
-            data.set(i, data.get(j))
+            max = null;
+            
+        } else {
+
+            T tempMax = this.data.get(0);
+
+            int i = parent(this.data.size() - 1);
+            T j = this.data.get(this.data.size() - 1);
+            
+            while (j.compareTo(tempMax) != 0) {
+
+                System.out.println(i);
+                T temp = this.data.get(i);
+
+                this.data.set(i, j);
+
+                i = parent(i);
+                j = temp;
+
+            }
+ 
+            max = j;
+            this.data.remove(this.data.size() - 1);
+
         }
 
-        return null;
+        return max;
     }
     
 }
