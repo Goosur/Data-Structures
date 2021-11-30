@@ -56,8 +56,20 @@ public class GenericMaxHeap<T extends Comparable<T>>{
      * @param new_data
      */
     public void insert(T new_data) {
+ 
+        data.add(new_data);
+       
+        int i = parent(data.indexOf(new_data));
+        int j = data.indexOf(new_data);
 
-        // TODO: Need to do this still
+        while (data.get(i).compareTo(new_data) < 0 && i >= 0) {
+            data.set(j, data.get(i));
+            data.set(i, new_data);
+
+            i = parent(data.indexOf(new_data));
+            j = data.indexOf(new_data);
+        }
+
     }
     
     /**
@@ -74,7 +86,17 @@ public class GenericMaxHeap<T extends Comparable<T>>{
      */
     public T removeMax() {
 
-        // TODO: Don't return null, change this line!
+        // TODO: Keep working on this. Almost finished.
+        T max = data.get(0);
+        
+        T temp = data.get(data.size() - 1);
+        int i = parent(data.indexOf(temp));
+        int j = data.indexOf(temp);
+
+        while (i >= 0) {
+            data.set(i, data.get(j))
+        }
+
         return null;
     }
     
