@@ -1,69 +1,88 @@
 public class UnlimitedArrayCircle implements UnlimitedArray {
 
-    private int entries = 0;
+    private int elements = 0;
     private int first = 0;
     private int last = -1;
     private int[] array = new int[4];
 
     @Override
     public boolean isEmpty() {
-        if (entries == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.elements == 0;
     }
 
     @Override
     public int getFirst() {
-        return array[first];
+        if (this.elements == 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        return this.array[this.first];
     }
 
     @Override
     public int getLast() {
-        return array[last];
+        if (this.elements == 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        return this.array[this.last];
     }
 
     @Override
     public void add(int number) {
-        entries++;
-        last++;
-        if (entries == array.length + 1) {
+        if (this.entries == this.array.length) {
             resize();
         }
-        if (last == array.length) {
-            last = 0;
-        }
-        array[last] = number;
+        // Update last pointer
+        this.last = (this.last + 1) % this.array.length;
+        // Add new element at new last pointer
+        this.array[this.last] = number;
+        // Update number of elements
+        this.elements++;
     }
 
     @Override
     public int removeFirst() {
-        entries--;
-        int item = array[first];
-        first++;
-        if (first == array.length) {
-            first = 0;
+        if (this.elements == 0) {
+            throw new IndexOutOfBoundsException();
         }
+        int item = this.array[this.first];
+        // Increment first pointer to "remove" first element
+        this.first = (this.first + 1) % this.array.length;
+        // Update number of elements
+        this.elements--;
         return item;
     }
 
     @Override
     public int removeLast() {
-        entries--;
-        int item = array[last];
-        last--;
-        if (last == -1) {
-            last = array.length - 1;
+        if (this.elements == 0) {
+            throw new IndexOutOfBoundsException();
         }
+        int item = this.array[this.last];
+        // Decrement last pointer to "remove" last element
+        this.last = (this.last - 1 + this.array.length) % this.array.length;
+        // Update number of elements
+        this.elements--;
         return item;
     }
 
     public void resize() {
-        int[] newArray = new int[array.length * 2];
-        for (int i = 0; i < array.length; i++) {
-            newArray[i] = array[i];
+        int[] newArray = new int[this.array.length * 2];
+        int j = 0;
+        // We need to copy the elements to the new array while leaving no gaps in elements between first and last pointers
+        // Copy elements from first pointer to end of array first
+        for (int i = this.first; i < this.array.length; i++) {
+            newArray[j] = this.array[i];
+            j++;
         }
-        array = newArray;
+        // Copy elements from the start of the old array to the last pointer
+        for (int i = 0; i <= this.last; i++) {
+            newArray[j] = this.array[i];
+            j++
+        }
+        // Update first and last pointers
+        this.first = 0;
+        this.last = this.elements - 1;
+        // Store new array
+        this.array = newArray;
     }
 }
