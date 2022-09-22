@@ -1,61 +1,55 @@
 public class UnlimitedArrayFast implements UnlimitedArray {
 
-    private int entries = 0;
-    private int first = 0;
-    private int last = 0;
+    private int elements = 0;
     private int[] array = new int[4];
 
     @Override
     public boolean isEmpty() {
-        if (entries == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.elements == 0;
     }
 
     @Override
     public int getFirst() {
-        return array[first];
+        return this.array[0];
     }
 
     @Override
     public int getLast() {
-        return array[last];
+        return this.array[this.elements - 1];
     }
 
     @Override
     public void add(int number) {
-        entries++;
-        if (entries == array.length + 1) {
-            resize();
+        if (this.entries == this.array.length) {
+            this.resize();
         }
-        array[last] = number;
-        last++;
+        array[this.elements] = number;
+        this.elements++;
     }
 
     @Override
     public int removeFirst() {
-        entries--;
-        int item = array[first];
-        first++;
+        int item = this.array[0];
+        for (int i = 1; i < this.elements; i++) {
+            this.array[i - 1] = this.array[i];
+        }
+        this.elements--;
         return item;
     }
 
     @Override
     public int removeLast() {
-        entries--;
-        last--;
-        int item = array[last];
+        int item = this.array[this.elements - 1];
+        this.elements--;
         return item;
     }
 
     public void resize() {
-        int[] newArray = new int[array.length * 2];
-        for (int i = 0; i < array.length; i++) {
-            newArray[i] = array[i];
+        int[] newArray = new int[this.array.length * 2];
+        for (int i = 0; i < this.array.length; i++) {
+            newArray[i] = this.array[i];
         }
 
-        array = newArray;
+        this.array = newArray;
     }
 }
