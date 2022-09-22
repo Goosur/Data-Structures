@@ -67,21 +67,29 @@ public class UnlimitedArrayCircle implements UnlimitedArray {
 
     public void resize() {
         int[] newArray = new int[this.array.length * 2];
-        int j = 0;
-        // We need to copy the elements to the new array while leaving no gaps in elements between first and last pointers
-        // Copy elements from first pointer to end of array first
-        for (int i = this.first; i < this.array.length; i++) {
-            newArray[j] = this.array[i];
-            j++;
+        if (this.first > this.last) {
+            // We need to copy the elements to the new array while leaving no gaps in elements between first and last pointers
+            // Copy elements from first pointer to end of array first
+            int j = 0;
+            for (int i = this.first; i < this.array.length; i++) {
+                newArray[j] = this.array[i];
+                j++;
+            }
+            // Copy elements from the start of the old array to the last pointer
+            for (int i = 0; i <= this.last; i++) {
+                newArray[j] = this.array[i];
+                j++
+            }
+            // Update first and last pointers
+            this.first = 0;
+            this.last = this.elements - 1;
+        } else {
+            // Directly copy
+            // First and last pointers do not need updated in this case because nothing moves
+            for (int i = this.first; i <= this.last; i++) {
+                newArray[i] = this.array[i];
+            }
         }
-        // Copy elements from the start of the old array to the last pointer
-        for (int i = 0; i <= this.last; i++) {
-            newArray[j] = this.array[i];
-            j++
-        }
-        // Update first and last pointers
-        this.first = 0;
-        this.last = this.elements - 1;
         // Store new array
         this.array = newArray;
     }
