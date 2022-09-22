@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.ArrayList;
-import java.lang.IllegalArgumentException;
 import java.lang.RuntimeException;
 
 //IMPORTANT: Note that the processLetters function doesn't need to care at all about which implementation of a Letter is being used. 
